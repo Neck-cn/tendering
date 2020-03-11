@@ -25,6 +25,7 @@ public class JwtFilter extends HandlerInterceptorAdapter {
         allowUrl.add("/enterprise/sendCode");
         allowUrl.add("/enterprise/register");
         allowUrl.add("/upload");
+        allowUrl.add("/open/check");
     }
 
     @Override
