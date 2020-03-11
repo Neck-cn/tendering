@@ -1,0 +1,61 @@
+server:
+  port: 8000
+jwt:
+  config:
+    key: erya
+    ttl: 21600000
+application:
+  file:
+    prefix_host: http://file.erya.ychstudy.cn/
+  sms:
+    templateCode: SMS_183762285
+    signName: 网课答案查询
+    accessKeyId: LTAI4FuDLo9nAgxwf8R77p7M
+    accessSecret: HtVSiOpnxmLBqUWtKYy0YGOyM8E9m5
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://134.175.99.101:3306/tendering?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: root
+    password: YCH670989882@qq.com
+    hikari:
+      maximum-pool-size: 12
+      minimum-idle: 6
+  redis:
+    database: 1
+    password: YCH670989882@qq.com
+    host: 39.96.54.89
+    lettuce:
+      pool:
+        max-active: 1
+        min-idle: 1
+        max-idle: 1
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  servlet:
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 30MB
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  typeAliasesPackage: cn.ych.tendering.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  tracker-list:            #TrackerList参数,支持多个
+    - 134.175.99.101:22122
+  pool:
+    #从池中借出的对象的最大数目（配置为-1表示不限制）
+    max-total: 1
+    #获取连接时的最大等待毫秒数(默认配置为5秒)
+    max-wait-millis: 5000
+    #每个key最大连接数
+    max-total-per-key: 1
+    #每个key对应的连接池最大空闲连接数
+    max-idle-per-key: 1
+    #每个key对应的连接池最小空闲连接数
+    min_idle_per_key: 1
