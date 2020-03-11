@@ -1,5 +1,6 @@
 package cn.ych.tendering.service.imp;
 
+import cn.ych.tendering.exception.TenderingEnum;
 import cn.ych.tendering.exception.TenderingException;
 import cn.ych.tendering.mapper.EnterpriseMapper;
 import cn.ych.tendering.pojo.Enterprise;
@@ -17,6 +18,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -47,7 +49,11 @@ public class EnterpriseServiceImp implements EnterpriseService {
 
     @Override
     public int register(Enterprise enterprise) {
-        return enterpriseMapper.insert(enterprise);
+        try {
+            return enterpriseMapper.insert(enterprise);
+        }catch (DuplicateKeyException exception){
+            throw new TenderingException(TenderingEnum.USER_IS_EXISTED);
+        }
     }
 
     @Override
