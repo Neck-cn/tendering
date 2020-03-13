@@ -33,11 +33,11 @@ public class EnterpriseController {
 
     @PostMapping("/enterprise/login")
     public ResponseEntity<Result> login(@RequestBody Enterprise enterprise) {
-        Map<String, String> login = enterpriseService.login(enterprise);
+        Map<String, Object> login = enterpriseService.login(enterprise);
         if (login == null) {
             return ResponseEntity.status(HttpStatus.OK).body(new Result());
         }
-        stringRedisTemplate.opsForValue().set(login.get("token"), "1", Long.parseLong(login.get("expiretime")) - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+        stringRedisTemplate.opsForValue().set(login.get("token").toString(), "1", Long.parseLong(login.get("expiretime").toString()) - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
         return ResponseEntity.status(HttpStatus.OK).body(new Result(login));
     }
 
