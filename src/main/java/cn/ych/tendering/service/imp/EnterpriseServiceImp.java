@@ -50,6 +50,7 @@ public class EnterpriseServiceImp implements EnterpriseService {
     @Override
     public int register(Enterprise enterprise) {
         try {
+            enterprise.setPassword(bCryptPasswordEncoder.encode(enterprise.getPassword()));
             return enterpriseMapper.insert(enterprise);
         } catch (DuplicateKeyException exception) {
             throw new TenderingException(TenderingEnum.USER_IS_EXISTED);
