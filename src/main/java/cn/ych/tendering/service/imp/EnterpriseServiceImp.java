@@ -51,13 +51,13 @@ public class EnterpriseServiceImp implements EnterpriseService {
     public int register(Enterprise enterprise) {
         try {
             return enterpriseMapper.insert(enterprise);
-        }catch (DuplicateKeyException exception){
+        } catch (DuplicateKeyException exception) {
             throw new TenderingException(TenderingEnum.USER_IS_EXISTED);
         }
     }
 
     @Override
-    public Map<String, String> login(Enterprise enterprise) {
+    public Map<String, Object> login(Enterprise enterprise) {
         if (System.currentTimeMillis() - enterprise.getTime() > 300000) {
             return null;
         }
@@ -74,7 +74,9 @@ public class EnterpriseServiceImp implements EnterpriseService {
         queryWrapper.eq("username", enterprise.getUsername());
         enterprise = enterpriseMapper.selectOne(queryWrapper);
         if (enterprise != null && bCryptPasswordEncoder.matches(decrypt, enterprise.getPassword())) {
-            return jwtUtil.createJWT(String.valueOf(enterprise.getId()), enterprise.getUsername(), "user");
+            Map<String, Object> user = jwtUtil.createJWT(String.valueOf(enterprise.getId()), enterprise.getUsername(), "user");
+            user.put("enterprise", enterprise);
+            return user;
         }
         return null;
     }

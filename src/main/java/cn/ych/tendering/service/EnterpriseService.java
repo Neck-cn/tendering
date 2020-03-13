@@ -7,7 +7,7 @@ import java.util.Map;
 public interface EnterpriseService {
     int register(Enterprise enterprise);
 
-    Map<String,String> login(Enterprise enterprise);
+    Map<String,Object> login(Enterprise enterprise);
 
     int modify(Enterprise enterprise);
 

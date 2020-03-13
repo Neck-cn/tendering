@@ -40,7 +40,7 @@ public class JwtUtil {
      * @param subject
      * @return
      */
-    public Map<String, String> createJWT(String id, String subject, String roles) {
+    public Map<String, Object> createJWT(String id, String subject, String roles) {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         JwtBuilder builder = Jwts.builder().setId(id)
@@ -52,7 +52,7 @@ public class JwtUtil {
         if (ttl > 0) {
             builder.setExpiration(time);
         }
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("token", builder.compact());
         map.put("expiretime", String.valueOf(time.getTime()));
         map.put("roles", roles);
