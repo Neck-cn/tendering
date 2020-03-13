@@ -27,11 +27,11 @@ public class AdminController {
 
     @PostMapping("/admin/login")
     public ResponseEntity<Result> login(@RequestBody Admin admin) {
-        Map<String, String> login = adminService.login(admin);
+        Map<String, Object> login = adminService.login(admin);
         if (login == null) {
             return ResponseEntity.status(HttpStatus.OK).body(new Result());
         }
-        stringRedisTemplate.opsForValue().set(login.get("token"), "1", Long.parseLong(login.get("expiretime")) - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+        stringRedisTemplate.opsForValue().set(login.get("token").toString(), "1", Long.parseLong(login.get("expiretime").toString()) - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
         Result result = new Result(login);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }

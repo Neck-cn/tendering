@@ -26,7 +26,7 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public Map<String, String> login(Admin admin) {
+    public Map<String, Object> login(Admin admin) {
         if (System.currentTimeMillis() - admin.getTime() > 300000){
             return null;
         }

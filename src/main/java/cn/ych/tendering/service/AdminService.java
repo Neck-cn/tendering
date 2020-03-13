@@ -5,7 +5,7 @@ import cn.ych.tendering.pojo.Admin;
 import java.util.Map;
 
 public interface AdminService {
-    Map<String,String> login(Admin admin);
+    Map<String,Object> login(Admin admin);
 
     int changePassword(Admin admin);
 
