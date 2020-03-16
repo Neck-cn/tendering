@@ -60,4 +60,9 @@ public class EnterpriseController {
     public ResponseEntity<Result> getInfo(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body(new Result(enterpriseService.getInfo(id)));
     }
+
+    @PostMapping("/enterprise/{page}/{pageSize}")
+    public ResponseEntity<Result> selectEnterpriseList(@PathVariable int page, @PathVariable int pageSize, @RequestBody Enterprise enterprise) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(enterpriseService.selectEnterprise(page,pageSize,enterprise)));
+    }
 }

@@ -15,6 +15,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Setter;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -118,6 +119,12 @@ public class EnterpriseServiceImp implements EnterpriseService {
     @Override
     public Enterprise getInfo(int id) {
         return enterpriseMapper.selectById(id);
+    }
+
+    @Override
+    public IPage<Enterprise> selectEnterprise(int page, int pageSize, Enterprise enterprise) {
+
+        return null;
     }
 
 }

@@ -8,5 +8,5 @@ public interface ReportService {
 
     int modify(Report report);
 
-    IPage<Report> selectReport(int pageNo, int pageSize,String r_name,String b_name);
+    IPage<Report> selectReport(Report report, int pageNo, int pageSize);
 }

@@ -8,7 +8,7 @@ public interface BidService {
 
     int update(Bid bid);
 
-    IPage<Bid> selectBid(int pageNo, int pageSize, String search);
+    IPage<Bid> selectBid(int pageNo, int pageSize, Bid bid);
 
-    IPage<Bid> selectBidByeId(int e_id, int page, int pageSize, String query);
+    Bid selectById(int id);
 }

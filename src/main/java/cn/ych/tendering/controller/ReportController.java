@@ -26,7 +26,7 @@ public class ReportController {
     }
 
     @GetMapping("/report/{page}/{pageSize}")
-    public ResponseEntity<Result> selectTendering(@RequestParam String r_name, @RequestParam String b_name, @PathVariable int page, @PathVariable int pageSize) {
-        return ResponseEntity.status(HttpStatus.OK).body(new Result(reportService.selectReport(page, pageSize, r_name, b_name)));
+    public ResponseEntity<Result> selectReport(@RequestBody Report report, @PathVariable int page, @PathVariable int pageSize) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(reportService.selectReport(report, page, pageSize)));
     }
 }

@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 @Service
 public class TenderingServiceImp implements TenderingService {
@@ -29,17 +29,41 @@ public class TenderingServiceImp implements TenderingService {
     }
 
     @Override
-    public IPage<Tendering> selectTendering(int pageNo, int pageSize, String search, String status, boolean all, Integer eid) {
+    public IPage<Tendering> selectTendering(int pageNo, int pageSize, Tendering tendering) {
         IPage<Tendering> page = new Page<>(pageNo, pageSize);
         QueryWrapper<Tendering> wrapper = new QueryWrapper<>();
-        wrapper.eq("status", status);
-        if (!all) {
-            wrapper.le("end_time", new Date());
+        if (tendering.getId() != 0) {
+            wrapper.eq("id", tendering.getId());
         }
-        if (eid != null) {
-            wrapper.like("e_id", eid);
+        if (tendering.getE_id() != 0) {
+            wrapper.eq("e_id", tendering.getE_id());
         }
-        wrapper.like("title", "%" + search + "%");
+        if (tendering.getContent() != null) {
+            wrapper.like("content", "%" + tendering.getContent() + "%");
+        }
+        if (tendering.getEnd_time() != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            wrapper.le("time", sdf.format(tendering.getEnd_time()));
+        }
+        if (tendering.getName() != null) {
+            wrapper.like("name", "%" + tendering.getName() + "%");
+        }
+        if (tendering.getSrc() != null) {
+            wrapper.like("src", "%" + tendering.getSrc() + "%");
+        }
+        if (tendering.getStart_time() != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            wrapper.ge("time", sdf.format(tendering.getStart_time()));
+        }
+        if (tendering.getStatus() != null) {
+            wrapper.eq("status", tendering.getStatus());
+        }
+        if (tendering.getTitle() != null) {
+            wrapper.like("title", "%" + tendering.getTitle() + "%");
+        }
+        if (tendering.getWin_id() != 0) {
+            wrapper.eq("win_id", tendering.getWin_id());
+        }
         return tenderingMapper.selectPage(page, wrapper);
     }
 

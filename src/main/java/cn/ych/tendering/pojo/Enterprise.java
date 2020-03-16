@@ -16,7 +16,6 @@ public class Enterprise {
     private String name;
     private String address;
     private String phone;
-    private String status;
     @TableField(exist = false)
     private String code;
     @TableField(exist = false)

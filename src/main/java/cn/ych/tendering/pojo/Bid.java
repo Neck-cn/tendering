@@ -16,7 +16,6 @@ public class Bid {
     private int t_id;
     private String content;
     private Date time;
-    private String status;
     private String src;
     private String name;
 }
