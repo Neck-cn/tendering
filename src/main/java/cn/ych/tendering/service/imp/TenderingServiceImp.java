@@ -29,12 +29,15 @@ public class TenderingServiceImp implements TenderingService {
     }
 
     @Override
-    public IPage<Tendering> selectTendering(int pageNo, int pageSize, String search, String status, boolean all) {
+    public IPage<Tendering> selectTendering(int pageNo, int pageSize, String search, String status, boolean all, Integer eid) {
         IPage<Tendering> page = new Page<>(pageNo, pageSize);
         QueryWrapper<Tendering> wrapper = new QueryWrapper<>();
         wrapper.eq("status", status);
         if (!all) {
             wrapper.le("end_time", new Date());
+        }
+        if (eid != null) {
+            wrapper.like("e_id", eid);
         }
         wrapper.like("title", "%" + search + "%");
         return tenderingMapper.selectPage(page, wrapper);
@@ -43,5 +46,10 @@ public class TenderingServiceImp implements TenderingService {
     @Override
     public Tendering getTenderingInfo(int t_id) {
         return tenderingMapper.selectById(t_id);
+    }
+
+    @Override
+    public int delete(int tid) {
+        return tenderingMapper.deleteById(tid);
     }
 }

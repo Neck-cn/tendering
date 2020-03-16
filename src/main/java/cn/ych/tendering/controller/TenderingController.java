@@ -27,16 +27,25 @@ public class TenderingController {
 
     @GetMapping("/tendering/{page}/{pageSize}")
     public ResponseEntity<Result> selectTendering(@RequestParam String query, @PathVariable int page, @PathVariable int pageSize) {
-        return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.selectTendering(page, pageSize, query, "1", false)));
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.selectTendering(page, pageSize, query, "1", false, null)));
+    }
+
+    @DeleteMapping("/tendering/{tid}")
+    public ResponseEntity<Result> deleteTendering(@PathVariable int tid) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.delete(tid)));
     }
 
     /**
-     *
      * @param t_id 招标信息id
      * @return Response
      */
     @GetMapping("/tendering/{t_id}")
     public ResponseEntity<Result> getTenderingInfo(@PathVariable int t_id) {
         return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.getTenderingInfo(t_id)));
+    }
+
+    @GetMapping("/tendering/{eid}/{page}/{pageSize}")
+    public ResponseEntity<Result> getMyTenderingList(@RequestParam String query, @RequestParam String status, @PathVariable int page, @PathVariable int pageSize, @PathVariable int eid) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.selectTendering(page, pageSize, query, status, true, eid)));
     }
 }
