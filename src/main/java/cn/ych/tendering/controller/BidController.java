@@ -41,4 +41,8 @@ public class BidController {
         return ResponseEntity.status(HttpStatus.OK).body(new Result(bidService.selectById(id)));
     }
 
+    @PostMapping("/bid/{id}")
+    public ResponseEntity<Result> deleteBid(@PathVariable int id) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(bidService.deleteById(id)));
+    }
 }

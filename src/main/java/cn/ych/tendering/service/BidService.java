@@ -11,4 +11,6 @@ public interface BidService {
     IPage<Bid> selectBid(int pageNo, int pageSize, Bid bid);
 
     Bid selectById(int id);
+
+    int deleteById(int id);
 }

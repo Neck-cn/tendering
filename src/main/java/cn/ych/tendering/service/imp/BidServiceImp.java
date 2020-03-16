@@ -62,4 +62,9 @@ public class BidServiceImp implements BidService {
         return bidMapper.selectById(id);
     }
 
+    @Override
+    public int deleteById(int id) {
+        return bidMapper.deleteById(id);
+    }
+
 }
