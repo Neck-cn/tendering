@@ -9,4 +9,6 @@ public interface TenderingService {
     int modify(Tendering tendering);
 
     IPage<Tendering> selectTendering(int pageNo, int pageSize, String search, String status, boolean all);
+
+    Tendering getTenderingInfo(int t_id);
 }

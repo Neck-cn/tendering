@@ -31,14 +31,14 @@ public class JwtFilter extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) {
-        if (allowUrl.contains(request.getRequestURI()))
-            return true;
-        String token = request.getHeader("token");
-        if (token == null) {
-            throw new TenderingException(TenderingEnum.REQUEST_INVALID);
-        }
-        if (stringRedisTemplate.opsForValue().get(token) == null)
-            throw new TenderingException(TenderingEnum.TOKEN_INVALID);
+//        if (allowUrl.contains(request.getRequestURI()))
+//            return true;
+//        String token = request.getHeader("token");
+//        if (token == null) {
+//            throw new TenderingException(TenderingEnum.REQUEST_INVALID);
+//        }
+//        if (stringRedisTemplate.opsForValue().get(token) == null)
+//            throw new TenderingException(TenderingEnum.TOKEN_INVALID);
 //        if (roles == null) {
 //            throw new EryaException(EryaEnum.TOKEN_INVALID);
 //        }

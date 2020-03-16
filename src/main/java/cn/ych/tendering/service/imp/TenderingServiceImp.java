@@ -39,4 +39,9 @@ public class TenderingServiceImp implements TenderingService {
         wrapper.like("title", "%" + search + "%");
         return tenderingMapper.selectPage(page, wrapper);
     }
+
+    @Override
+    public Tendering getTenderingInfo(int t_id) {
+        return tenderingMapper.selectById(t_id);
+    }
 }

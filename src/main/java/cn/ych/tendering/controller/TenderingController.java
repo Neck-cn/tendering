@@ -29,4 +29,14 @@ public class TenderingController {
     public ResponseEntity<Result> selectTendering(@RequestParam String query, @PathVariable int page, @PathVariable int pageSize) {
         return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.selectTendering(page, pageSize, query, "1", false)));
     }
+
+    /**
+     *
+     * @param t_id 招标信息id
+     * @return Response
+     */
+    @GetMapping("/tendering/{t_id}")
+    public ResponseEntity<Result> getTenderingInfo(@PathVariable int t_id) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(tenderingService.getTenderingInfo(t_id)));
+    }
 }

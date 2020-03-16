@@ -30,8 +30,17 @@ public class BidServiceImp implements BidService {
     public IPage<Bid> selectBid(int pageNo, int pageSize, String search) {
         IPage<Bid> page = new Page<>(pageNo, pageSize);
         QueryWrapper<Bid> wrapper = new QueryWrapper<>();
-        wrapper.eq("status","1");
+        wrapper.eq("status", "1");
         wrapper.like("name", "%" + search + "%");
+        return bidMapper.selectPage(page, wrapper);
+    }
+
+    @Override
+    public IPage<Bid> selectBidByeId(int e_id, int pageNo, int pageSize, String query) {
+        IPage<Bid> page = new Page<>(pageNo, pageSize);
+        QueryWrapper<Bid> wrapper = new QueryWrapper<>();
+        wrapper.eq("e_id", e_id);
+        wrapper.like("name", "%" + query + "%");
         return bidMapper.selectPage(page, wrapper);
     }
 

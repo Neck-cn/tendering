@@ -1,7 +1,6 @@
 package cn.ych.tendering.service;
 
 import cn.ych.tendering.pojo.Bid;
-import cn.ych.tendering.pojo.Tendering;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 public interface BidService {
@@ -10,4 +9,6 @@ public interface BidService {
     int update(Bid bid);
 
     IPage<Bid> selectBid(int pageNo, int pageSize, String search);
+
+    IPage<Bid> selectBidByeId(int e_id, int page, int pageSize, String query);
 }
