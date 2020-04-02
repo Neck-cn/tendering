@@ -41,9 +41,6 @@ public class ReportServiceImp implements ReportService {
         if (report.getE_id() != 0) {
             wrapper.eq("e_id", report.getE_id());
         }
-        if (report.getStatus() != null) {
-            wrapper.eq("status", report.getStatus());
-        }
         if (report.getContent() != null) {
             wrapper.like("content", "%" + report.getContent() + "%");
         }

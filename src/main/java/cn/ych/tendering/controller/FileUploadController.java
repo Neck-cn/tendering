@@ -2,6 +2,8 @@ package cn.ych.tendering.controller;
 
 import cn.ych.tendering.service.FileUploadService;
 import cn.ych.tendering.vo.Result;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,8 @@ public class FileUploadController {
         this.fileUploadService = fileUploadService;
     }
 
+    @ApiOperation(value = "文件上传")
+    @ApiImplicitParam(name = "file", value = "文件上传", dataType = "MultipartFile", required = true)
     @PostMapping("/upload")
     public ResponseEntity<Result> upload(@RequestParam("file") MultipartFile file) {
 //        if (file.isEmpty()) {

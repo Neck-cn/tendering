@@ -82,7 +82,7 @@ class TenderingApplicationTests {
 
     @Test
     void BidServiceSelectTest() {
-        System.out.println(bidService.selectBid(1, 10, ""));
+        System.out.println(bidService.selectBid(1, 10, new Bid()));
     }
 
     @Test
