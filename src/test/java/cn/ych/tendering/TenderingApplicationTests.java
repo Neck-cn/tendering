@@ -40,22 +40,23 @@ class TenderingApplicationTests {
 
     @Test
     void AdminServiceLoginTest() throws Exception {
-        long time = System.currentTimeMillis();
-        Admin admin = new Admin();
-        admin.setTime(time);
-        admin.setUsername("wangzhuanzhuan");
-        String encrypt = AESUtil.encrypt("123456789", DigestUtils.md5DigestAsHex(String.valueOf(admin.getTime()).getBytes()));
-        admin.setPassword(Base64.encodeBase64String(encrypt.getBytes()));
-        System.out.println(admin);
-        System.out.println(adminService.login(admin));
+//        long time = System.currentTimeMillis();
+//        Admin admin = new Admin();
+//        admin.setTime(time);
+//        admin.setUsername("wangzhuanzhuan");
+//        String encrypt = AESUtil.encrypt("123456789", DigestUtils.md5DigestAsHex(String.valueOf(admin.getTime()).getBytes()));
+//        admin.setPassword(Base64.encodeBase64String(encrypt.getBytes()));
+//        System.out.println(admin);
+//        System.out.println(adminService.login(admin));
     }
 
     @Test
     void AdminServiceChangePassTest() {
-        Admin admin = new Admin();
-        admin.setUsername("admin");
-        admin.setPassword("111111");
-        System.out.println(adminService.changePassword(admin));
+//        Admin admin = new Admin();
+//        admin.setUsername("admin");
+//        admin.setPassword("111111");
+//        System.out.println(adminService.changePassword(admin));
+        System.out.println("/tendering/fdasd".matches("/tendering/.*"));
     }
 
     @Test
@@ -118,24 +119,24 @@ class TenderingApplicationTests {
 
     @Test
     void EnterpriseServiceLoginTest() throws Exception {
-        long time = System.currentTimeMillis();
-        Enterprise admin = new Enterprise();
-        admin.setTime(time);
-        admin.setUsername("wangzhuanzhuan");
-        String encrypt = AESUtil.encrypt("123456789", DigestUtils.md5DigestAsHex(String.valueOf(admin.getTime()).getBytes()));
-        admin.setPassword(Base64.encodeBase64String(encrypt.getBytes()));
-        System.out.println(admin);
-        System.out.println(enterpriseService.login(admin));
+//        long time = System.currentTimeMillis();
+//        Enterprise admin = new Enterprise();
+//        admin.setTime(time);
+//        admin.setUsername("wangzhuanzhuan");
+//        String encrypt = AESUtil.encrypt("123456789", DigestUtils.md5DigestAsHex(String.valueOf(admin.getTime()).getBytes()));
+//        admin.setPassword(Base64.encodeBase64String(encrypt.getBytes()));
+//        System.out.println(admin);
+//        System.out.println(enterpriseService.login(admin));
     }
 
     @Test
     void EnterpriseServiceRegisterTest() throws Exception {
-        long time = System.currentTimeMillis();
-        Enterprise admin = new Enterprise();
-        admin.setTime(time);
-        admin.setUsername("wangzhuanzhuan");
-        admin.setPassword("123456789");
-        System.out.println(admin);
-        System.out.println(enterpriseService.register(admin));
+//        long time = System.currentTimeMillis();
+//        Enterprise admin = new Enterprise();
+//        admin.setTime(time);
+//        admin.setUsername("wangzhuanzhuan");
+//        admin.setPassword("123456789");
+//        System.out.println(admin);
+//        System.out.println(enterpriseService.register(admin));
     }
 }

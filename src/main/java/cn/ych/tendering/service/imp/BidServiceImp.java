@@ -6,6 +6,7 @@ import cn.ych.tendering.service.BidService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -35,16 +36,16 @@ public class BidServiceImp implements BidService {
         if (bid.getId() != 0) {
             wrapper.eq("id", bid.getId());
         }
-        if (bid.getContent() != null) {
+        if (StringUtils.isNotEmpty(bid.getContent())) {
             wrapper.like("content", "%" + bid.getContent() + "%");
         }
         if (bid.getE_id() != 0) {
             wrapper.eq("e_id", bid.getE_id());
         }
-        if (bid.getName() != null) {
+        if (StringUtils.isNotEmpty(bid.getName())) {
             wrapper.like("name", "%" + bid.getName() + "%");
         }
-        if (bid.getSrc() != null) {
+        if (StringUtils.isNotEmpty(bid.getSrc())) {
             wrapper.like("src", "%" + bid.getSrc() + "%");
         }
         if (bid.getTime() != null) {

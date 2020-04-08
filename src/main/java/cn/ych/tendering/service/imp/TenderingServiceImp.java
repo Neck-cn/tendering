@@ -6,6 +6,7 @@ import cn.ych.tendering.service.TenderingService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -38,27 +39,27 @@ public class TenderingServiceImp implements TenderingService {
         if (tendering.getE_id() != 0) {
             wrapper.eq("e_id", tendering.getE_id());
         }
-        if (tendering.getContent() != null) {
+        if (StringUtils.isNotEmpty(tendering.getContent())) {
             wrapper.like("content", "%" + tendering.getContent() + "%");
         }
         if (tendering.getEnd_time() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             wrapper.le("time", sdf.format(tendering.getEnd_time()));
         }
-        if (tendering.getName() != null) {
+        if (StringUtils.isNotEmpty(tendering.getName())) {
             wrapper.like("name", "%" + tendering.getName() + "%");
         }
-        if (tendering.getSrc() != null) {
+        if (StringUtils.isNotEmpty(tendering.getSrc())) {
             wrapper.like("src", "%" + tendering.getSrc() + "%");
         }
         if (tendering.getStart_time() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             wrapper.ge("time", sdf.format(tendering.getStart_time()));
         }
-        if (tendering.getStatus() != null) {
+        if (StringUtils.isNotEmpty(tendering.getStatus())) {
             wrapper.eq("status", tendering.getStatus());
         }
-        if (tendering.getTitle() != null) {
+        if (StringUtils.isNotEmpty(tendering.getTitle())) {
             wrapper.like("title", "%" + tendering.getTitle() + "%");
         }
         if (tendering.getWin_id() != 0) {

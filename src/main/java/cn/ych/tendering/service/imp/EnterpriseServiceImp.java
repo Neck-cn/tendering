@@ -8,7 +8,6 @@ import cn.ych.tendering.service.EnterpriseService;
 import cn.ych.tendering.utils.AESUtil;
 import cn.ych.tendering.utils.JwtUtil;
 import com.aliyuncs.CommonRequest;
-import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
@@ -16,7 +15,9 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.dao.DuplicateKeyException;
@@ -66,7 +67,7 @@ public class EnterpriseServiceImp implements EnterpriseService {
         String password = enterprise.getPassword();
         byte[] bytes = Base64.decodeBase64(password);
         String s = DigestUtils.md5DigestAsHex(String.valueOf(enterprise.getTime()).getBytes());
-        String decrypt = null;
+        String decrypt;
         try {
             decrypt = AESUtil.decrypt(new String(bytes), s);
         } catch (Exception e) {
@@ -108,7 +109,7 @@ public class EnterpriseServiceImp implements EnterpriseService {
         request.putQueryParameter("TemplateCode", templateCode);
         request.putQueryParameter("TemplateParam", "{\"code\":\"" + code + "\"}");
         try {
-            CommonResponse response = client.getCommonResponse(request);
+            client.getCommonResponse(request);
         } catch (ClientException e) {
             e.printStackTrace();
             return null;
@@ -122,9 +123,25 @@ public class EnterpriseServiceImp implements EnterpriseService {
     }
 
     @Override
-    public IPage<Enterprise> selectEnterprise(int page, int pageSize, Enterprise enterprise) {
-
-        return null;
+    public IPage<Enterprise> selectEnterprise(int pageNo, int pageSize, Enterprise enterprise) {
+        IPage<Enterprise> page = new Page<>(pageNo, pageSize);
+        QueryWrapper<Enterprise> wrapper = new QueryWrapper<>();
+        if (enterprise.getId() != 0) {
+            wrapper.eq("id", enterprise.getId());
+        }
+        if (StringUtils.isNotEmpty(enterprise.getUsername())) {
+            wrapper.eq("username", enterprise.getUsername());
+        }
+        if (StringUtils.isNotEmpty(enterprise.getName())) {
+            wrapper.eq("name", enterprise.getName());
+        }
+        if (StringUtils.isNotEmpty(enterprise.getAddress())) {
+            wrapper.like("address", "%" + enterprise.getAddress() + "%");
+        }
+        if (StringUtils.isNotEmpty(enterprise.getPhone())) {
+            wrapper.like("phone", "%" + enterprise.getPhone() + "%");
+        }
+        return enterpriseMapper.selectPage(page, wrapper);
     }
 
 }

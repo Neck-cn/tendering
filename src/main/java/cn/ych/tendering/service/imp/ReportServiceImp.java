@@ -6,6 +6,7 @@ import cn.ych.tendering.service.ReportService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -41,13 +42,13 @@ public class ReportServiceImp implements ReportService {
         if (report.getE_id() != 0) {
             wrapper.eq("e_id", report.getE_id());
         }
-        if (report.getContent() != null) {
+        if (StringUtils.isNotEmpty(report.getContent())) {
             wrapper.like("content", "%" + report.getContent() + "%");
         }
-        if (report.getE_name() != null) {
+        if (StringUtils.isNotEmpty(report.getE_name())) {
             wrapper.like("b_name", "%" + report.getE_name() + "%");
         }
-        if (report.getR_name() != null) {
+        if (StringUtils.isNotEmpty(report.getR_name())) {
             wrapper.like("r_name", "%" + report.getR_name() + "%");
         }
         if (report.getTime() != null) {

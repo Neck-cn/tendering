@@ -43,6 +43,7 @@ mybatis-plus:
   typeAliasesPackage: cn.ych.tendering.pojo
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false
 fdfs:
   so-timeout: 1501
   connect-timeout: 601
