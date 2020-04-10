@@ -27,5 +27,7 @@ public class Bid {
     @ApiModelProperty(value = "竞标书地址")
     private String src;
     @ApiModelProperty(value = "竞标企业名称")
-    private String name;
+    private String e_name;
+    @ApiModelProperty(value = "招标项目标题")
+    private String t_title;
 }

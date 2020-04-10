@@ -42,8 +42,11 @@ public class BidServiceImp implements BidService {
         if (bid.getE_id() != 0) {
             wrapper.eq("e_id", bid.getE_id());
         }
-        if (StringUtils.isNotEmpty(bid.getName())) {
-            wrapper.like("name", "%" + bid.getName() + "%");
+        if (StringUtils.isNotEmpty(bid.getE_name())) {
+            wrapper.like("e_name", "%" + bid.getE_name() + "%");
+        }
+        if (StringUtils.isNotEmpty(bid.getT_title())) {
+            wrapper.like("t_title", "%" + bid.getT_title() + "%");
         }
         if (StringUtils.isNotEmpty(bid.getSrc())) {
             wrapper.like("src", "%" + bid.getSrc() + "%");
