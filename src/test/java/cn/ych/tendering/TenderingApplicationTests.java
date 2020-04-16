@@ -139,4 +139,11 @@ class TenderingApplicationTests {
 //        System.out.println(admin);
 //        System.out.println(enterpriseService.register(admin));
     }
+
+    @Autowired
+    private EmailService emailService;
+    @Test
+    void testSendEmail(){
+        emailService.sendSimpleMessage("yangchenghu@58.com","测试发送","111111");
+    }
 }

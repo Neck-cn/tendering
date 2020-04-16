@@ -1,5 +1,6 @@
 package cn.ych.tendering.controller;
 
+import cn.ych.tendering.service.EmailService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -15,9 +16,11 @@ import java.util.Objects;
 @RestController
 public class OpenController {
     private StringRedisTemplate stringRedisTemplate;
+    private EmailService emailService;
 
-    public OpenController(StringRedisTemplate stringRedisTemplate) {
+    public OpenController(StringRedisTemplate stringRedisTemplate, EmailService emailService) {
         this.stringRedisTemplate = stringRedisTemplate;
+        this.emailService = emailService;
     }
 
     @ApiOperation("校验验证码")
@@ -31,5 +34,17 @@ public class OpenController {
             return ResponseEntity.status(HttpStatus.OK).body(true);
         }
         return ResponseEntity.status(HttpStatus.OK).body(false);
+    }
+
+    @ApiOperation("邮件发送接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "address", value = "邮件地址", required = true),
+            @ApiImplicitParam(name = "subject", value = "主题", required = true),
+            @ApiImplicitParam(name = "text", value = "内容", required = true),
+    })
+    @PostMapping("/open/sendEmail")
+    public ResponseEntity<Boolean> sendEmail(@RequestParam("address") String address, @RequestParam("subject") String subject, @RequestParam("text") String text) {
+        emailService.sendSimpleMessage(address, subject, text);
+        return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 }

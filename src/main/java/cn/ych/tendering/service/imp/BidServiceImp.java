@@ -56,7 +56,7 @@ public class BidServiceImp implements BidService {
             wrapper.eq("time", sdf.format(bid.getTime()));
         }
         if (bid.getT_id() != 0) {
-            wrapper.eq("status", bid.getT_id());
+            wrapper.eq("t_id", bid.getT_id());
         }
         return bidMapper.selectPage(page, wrapper);
     }
