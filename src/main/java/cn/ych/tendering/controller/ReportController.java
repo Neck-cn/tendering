@@ -36,7 +36,7 @@ public class ReportController {
             @ApiImplicitParam(name = "page", value = "当前页面", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页大小", required = true),
     })
-    @GetMapping("/report/{page}/{pageSize}")
+    @PostMapping("/report/{page}/{pageSize}")
     public ResponseEntity<Result> selectReport(@RequestBody Report report, @PathVariable int page, @PathVariable int pageSize) {
         return ResponseEntity.status(HttpStatus.OK).body(new Result(reportService.selectReport(report, page, pageSize)));
     }
