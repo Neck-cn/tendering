@@ -24,7 +24,7 @@ public class Bid {
     @ApiModelProperty(value = "竞标信息内容")
     private String content;
     @ApiModelProperty(value = "竞标信息时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date time;
     @ApiModelProperty(value = "竞标书地址")
     private String src;

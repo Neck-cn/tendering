@@ -22,10 +22,10 @@ public class Tendering {
     @ApiModelProperty(value = "招标状态")
     private String status;
     @ApiModelProperty(value = "招标开始时间")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date start_time;
     @ApiModelProperty(value = "招标结束时间")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date end_time;
     @ApiModelProperty(value = "中标企业id")
     private int win_id;
