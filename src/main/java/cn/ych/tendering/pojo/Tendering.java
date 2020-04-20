@@ -3,6 +3,7 @@ package cn.ych.tendering.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -21,8 +22,10 @@ public class Tendering {
     @ApiModelProperty(value = "招标状态")
     private String status;
     @ApiModelProperty(value = "招标开始时间")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date start_time;
     @ApiModelProperty(value = "招标结束时间")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date end_time;
     @ApiModelProperty(value = "中标企业id")
     private int win_id;

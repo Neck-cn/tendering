@@ -119,14 +119,15 @@ class TenderingApplicationTests {
 
     @Test
     void EnterpriseServiceLoginTest() throws Exception {
-//        long time = System.currentTimeMillis();
-//        Enterprise admin = new Enterprise();
-//        admin.setTime(time);
-//        admin.setUsername("wangzhuanzhuan");
-//        String encrypt = AESUtil.encrypt("123456789", DigestUtils.md5DigestAsHex(String.valueOf(admin.getTime()).getBytes()));
-//        admin.setPassword(Base64.encodeBase64String(encrypt.getBytes()));
-//        System.out.println(admin);
+        long time = System.currentTimeMillis();
+        Admin admin = new Admin();
+        admin.setTime(time);
+        admin.setUsername("admin");
+        String encrypt = AESUtil.encrypt("111111", DigestUtils.md5DigestAsHex(String.valueOf(admin.getTime()).getBytes()));
+        admin.setPassword(Base64.encodeBase64String(encrypt.getBytes()));
+        System.out.println(admin);
 //        System.out.println(enterpriseService.login(admin));
+        System.out.println(adminService.login(admin));
     }
 
     @Test
@@ -144,6 +145,6 @@ class TenderingApplicationTests {
     private EmailService emailService;
     @Test
     void testSendEmail(){
-        emailService.sendSimpleMessage("yangchenghu@58.com","测试发送","111111");
+//        emailService.sendSimpleMessage("yangchenghu@58.com","测试发送","111111");
     }
 }
