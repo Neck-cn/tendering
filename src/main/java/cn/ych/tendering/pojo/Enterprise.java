@@ -33,4 +33,6 @@ public class Enterprise {
     private long time;
     @ApiModelProperty(value = "企业资质证书地址")
     private String certificates;
+    @ApiModelProperty(value = "电子邮件")
+    private String e_mail;
 }
