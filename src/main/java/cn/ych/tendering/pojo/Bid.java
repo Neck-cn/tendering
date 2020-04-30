@@ -19,6 +19,8 @@ public class Bid {
     private int id;
     @ApiModelProperty(value = "竞标企业id")
     private int e_id;
+    @ApiModelProperty(value = "竞标项目企业id")
+    private int t_e_id;
     @ApiModelProperty(value = "竞标项目id")
     private int t_id;
     @ApiModelProperty(value = "竞标信息内容")
