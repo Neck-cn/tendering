@@ -44,7 +44,7 @@ public class TenderingServiceImp implements TenderingService {
         }
         if (tendering.getEnd_time() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            wrapper.le("end_time", sdf.format(tendering.getEnd_time()));
+            wrapper.ge("end_time", sdf.format(tendering.getEnd_time()));
         }
         if (StringUtils.isNotEmpty(tendering.getName())) {
             wrapper.like("name", "%" + tendering.getName() + "%");
@@ -54,7 +54,7 @@ public class TenderingServiceImp implements TenderingService {
         }
         if (tendering.getStart_time() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            wrapper.ge("start_time", sdf.format(tendering.getStart_time()));
+            wrapper.le("start_time", sdf.format(tendering.getStart_time()));
         }
         if (StringUtils.isNotEmpty(tendering.getStatus())) {
             wrapper.eq("status", tendering.getStatus());
