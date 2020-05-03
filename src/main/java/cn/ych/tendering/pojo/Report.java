@@ -29,4 +29,6 @@ public class Report {
     private String r_name;
     @ApiModelProperty(value = "被举报企业名")
     private String e_name;
+    @ApiModelProperty(value = "举报状态")
+    private int status;
 }
