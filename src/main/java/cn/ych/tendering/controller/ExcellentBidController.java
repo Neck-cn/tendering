@@ -1,7 +1,7 @@
 package cn.ych.tendering.controller;
 
-import cn.ych.tendering.pojo.Excellent;
-import cn.ych.tendering.service.ExcellentService;
+import cn.ych.tendering.pojo.ExcellentBid;
+import cn.ych.tendering.service.ExcellentBidService;
 import cn.ych.tendering.vo.Result;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ExcellentController {
-    private ExcellentService excellentService;
+public class ExcellentBidController {
+    private ExcellentBidService excellentBidService;
 
-    public ExcellentController(ExcellentService excellentService) {
-        this.excellentService = excellentService;
+    public ExcellentBidController(ExcellentBidService excellentBidService) {
+        this.excellentBidService = excellentBidService;
     }
 
     @ApiOperation("查询所有优秀企业信息")
@@ -26,8 +26,8 @@ public class ExcellentController {
             @ApiImplicitParam(name = "page", value = "当前页面", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页大小", required = true),
     })
-    @PostMapping("/excellent/{page}/{pageSize}")
-    public ResponseEntity<Result> selectEnterpriseList(@PathVariable int page, @PathVariable int pageSize, @RequestBody Excellent excellent) {
-        return ResponseEntity.status(HttpStatus.OK).body(new Result(excellentService.selectExcellent(page, pageSize, excellent)));
+    @PostMapping("/excellent/bid/{page}/{pageSize}")
+    public ResponseEntity<Result> selectEnterpriseList(@PathVariable int page, @PathVariable int pageSize, @RequestBody ExcellentBid excellentBid) {
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(excellentBidService.selectExcellent(page, pageSize, excellentBid)));
     }
 }

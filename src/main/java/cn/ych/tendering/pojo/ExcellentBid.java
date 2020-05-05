@@ -8,9 +8,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@TableName("excellent")
+@TableName("excellent_bid")
 @ApiModel
-public class Excellent {
+public class ExcellentBid {
     @TableId(type = IdType.AUTO)
     @ApiModelProperty(value = "id")
     private int id;
@@ -18,4 +18,6 @@ public class Excellent {
     private int e_id;
     @ApiModelProperty(value = "企业名称")
     private String name;
+    @ApiModelProperty(value = "分数")
+    private int score;
 }
