@@ -35,4 +35,6 @@ public class Tendering {
     private String src;
     @ApiModelProperty(value = "招标企业名")
     private String name;
+    @ApiModelProperty(value = "中标企业名")
+    private String reason;
 }
