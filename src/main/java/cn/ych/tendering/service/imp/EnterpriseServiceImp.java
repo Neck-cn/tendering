@@ -132,8 +132,11 @@ public class EnterpriseServiceImp implements EnterpriseService {
         if (StringUtils.isNotEmpty(enterprise.getUsername())) {
             wrapper.eq("username", enterprise.getUsername());
         }
-        if (StringUtils.isNotEmpty(enterprise.getName())) {
-            wrapper.eq("name", enterprise.getName());
+        if (StringUtils.isNotEmpty(enterprise.getLogo())) {
+            wrapper.eq("logo", enterprise.getLogo());
+        }
+        if (StringUtils.isNotEmpty(enterprise.getLogo())) {
+            wrapper.eq("site_url", enterprise.getSite_url());
         }
         if (StringUtils.isNotEmpty(enterprise.getAddress())) {
             wrapper.like("address", "%" + enterprise.getAddress() + "%");

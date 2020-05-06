@@ -19,8 +19,8 @@ public class Enterprise {
     private String username;
     @ApiModelProperty(value = "企业密码")
     private String password;
-    @ApiModelProperty(value = "企业名称")
-    private String name;
+    @ApiModelProperty(value = "企业网址")
+    private String site_url;
     @ApiModelProperty(value = "企业地址")
     private String address;
     @ApiModelProperty(value = "企业手机")
@@ -35,4 +35,6 @@ public class Enterprise {
     private String certificates;
     @ApiModelProperty(value = "电子邮件")
     private String e_mail;
+    @ApiModelProperty(value = "企业logo")
+    private String logo;
 }
