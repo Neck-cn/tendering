@@ -1,6 +1,7 @@
 package cn.ych.tendering.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -37,4 +38,7 @@ public class Tendering {
     private String name;
     @ApiModelProperty(value = "中标企业名")
     private String reason;
+    @ApiModelProperty(value = "方式")
+    @TableField(exist = false)
+    private int method;
 }
