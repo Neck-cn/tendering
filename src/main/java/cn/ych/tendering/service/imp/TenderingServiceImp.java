@@ -56,7 +56,7 @@ public class TenderingServiceImp implements TenderingService {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             wrapper.le("start_time", sdf.format(tendering.getStart_time()));
         }
-        if (StringUtils.isNotEmpty(tendering.getStatus())) {
+        if (tendering.getStatus() != 0) {
             wrapper.eq("status", tendering.getStatus());
         }
         if (StringUtils.isNotEmpty(tendering.getTitle())) {
