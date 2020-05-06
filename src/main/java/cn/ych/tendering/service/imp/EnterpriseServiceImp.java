@@ -74,10 +74,10 @@ public class EnterpriseServiceImp implements EnterpriseService {
             throw new TenderingException(500, e.getMessage());
         }
         QueryWrapper<Enterprise> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", enterprise.getUsername());
+        queryWrapper.eq("name", enterprise.getName());
         enterprise = enterpriseMapper.selectOne(queryWrapper);
         if (enterprise != null && bCryptPasswordEncoder.matches(decrypt, enterprise.getPassword())) {
-            Map<String, Object> user = jwtUtil.createJWT(String.valueOf(enterprise.getId()), enterprise.getUsername(), "user");
+            Map<String, Object> user = jwtUtil.createJWT(String.valueOf(enterprise.getId()), enterprise.getName(), "user");
             user.put("enterprise", enterprise);
             return user;
         }
@@ -129,8 +129,8 @@ public class EnterpriseServiceImp implements EnterpriseService {
         if (enterprise.getId() != 0) {
             wrapper.eq("id", enterprise.getId());
         }
-        if (StringUtils.isNotEmpty(enterprise.getUsername())) {
-            wrapper.eq("username", enterprise.getUsername());
+        if (StringUtils.isNotEmpty(enterprise.getName())) {
+            wrapper.eq("name", enterprise.getName());
         }
         if (StringUtils.isNotEmpty(enterprise.getLogo())) {
             wrapper.eq("logo", enterprise.getLogo());

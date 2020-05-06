@@ -16,7 +16,7 @@ public class Enterprise {
     @ApiModelProperty(value = "企业id")
     private int id;
     @ApiModelProperty(value = "企业用户名")
-    private String username;
+    private String name;
     @ApiModelProperty(value = "企业密码")
     private String password;
     @ApiModelProperty(value = "企业网址")
