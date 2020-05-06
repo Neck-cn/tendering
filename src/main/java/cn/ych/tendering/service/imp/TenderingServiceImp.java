@@ -54,7 +54,11 @@ public class TenderingServiceImp implements TenderingService {
         }
         if (tendering.getStart_time() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            wrapper.le("start_time", sdf.format(tendering.getStart_time()));
+            if (tendering.getMethod() == 1) {
+                wrapper.ge("start_time", sdf.format(tendering.getStart_time()));
+            } else {
+                wrapper.le("start_time", sdf.format(tendering.getStart_time()));
+            }
         }
         if (tendering.getStatus() != 0) {
             wrapper.eq("status", tendering.getStatus());
@@ -64,10 +68,6 @@ public class TenderingServiceImp implements TenderingService {
         }
         if (tendering.getWin_id() != 0) {
             wrapper.eq("win_id", tendering.getWin_id());
-        }
-        if(tendering.getMethod()==1){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            wrapper.ge("start_time", sdf.format(tendering.getStart_time()));
         }
         return tenderingMapper.selectPage(page, wrapper);
     }
