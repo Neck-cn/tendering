@@ -39,12 +39,12 @@ public class ExcellentBidTenderingImp implements ExcellentTenderingService {
         if (excellentTendering.getSum() != 0) {
             wrapper.eq("sum", excellentTendering.getSum());
         }
-        if (Double.compare(excellentTendering.getWin_rate(), 0) == 0) {
-            wrapper.eq("win_rate", excellentTendering.getWin_rate());
-        }
-        if (Double.compare(excellentTendering.getFail_rate(), 0) == 0) {
-            wrapper.eq("fail_rate", excellentTendering.getFail_rate());
-        }
+//        if (Double.compare(excellentTendering.getWin_rate(), 0) == 0) {
+//            wrapper.eq("win_rate", excellentTendering.getWin_rate());
+//        }
+//        if (Double.compare(excellentTendering.getFail_rate(), 0) == 0) {
+//            wrapper.eq("fail_rate", excellentTendering.getFail_rate());
+//        }
         return excellentTenderingMapper.selectPage(page, wrapper);
     }
 }

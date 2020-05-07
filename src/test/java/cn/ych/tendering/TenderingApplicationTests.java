@@ -5,16 +5,20 @@ import cn.ych.tendering.pojo.Admin;
 import cn.ych.tendering.pojo.Bid;
 import cn.ych.tendering.pojo.Enterprise;
 import cn.ych.tendering.pojo.Tendering;
+import cn.ych.tendering.processor.TenderingProcessor;
 import cn.ych.tendering.service.*;
 import cn.ych.tendering.utils.AESUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.DigestUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 @SpringBootTest
 class TenderingApplicationTests {
@@ -132,19 +136,98 @@ class TenderingApplicationTests {
 
     @Test
     void EnterpriseServiceRegisterTest() throws Exception {
-//        long time = System.currentTimeMillis();
-//        Enterprise admin = new Enterprise();
-//        admin.setTime(time);
-//        admin.setUsername("wangzhuanzhuan");
-//        admin.setPassword("123456789");
-//        System.out.println(admin);
-//        System.out.println(enterpriseService.register(admin));
+        long time = System.currentTimeMillis();
+        Enterprise enterprise = new Enterprise();
+        long phone = 123456789;
+        int num = 30;
+        String name = "有限公司";
+        Set<String> set = new HashSet<>();
+        while (num < 100) {
+            enterprise.setTime(time);
+            StringBuilder pre;
+            while (true) {
+                pre = new StringBuilder();
+                for (int i = 0; i < 4; i++) {
+                    pre.append(getRandomChar());
+                }
+                if (!set.contains(pre.toString())) {
+                    set.add(pre.toString());
+                    break;
+                }
+            }
+            enterprise.setName(pre + name);
+            enterprise.setPassword("123456789");
+            enterprise.setAddress("山西省太原市尖草坪区" + num + "号");
+            enterprise.setCertificates("http://file.erya.ychstudy.cn/group1/M00/00/06/rBAABV5rkTiAJ_ebAABB0Ez3K9g034.jpg");
+            enterprise.setE_mail(phone + num + "@qq.com");
+            enterprise.setLogo("http://file.erya.ychstudy.cn/group1/M00/00/06/rBAABV5rkTiAJ_ebAABB0Ez3K9g034.jpg");
+            enterprise.setPhone(phone + "" + num);
+            enterprise.setSite_url("https://www.baidu.com/");
+//            System.out.println(enterpriseService.register(enterprise));
+            num++;
+        }
     }
 
     @Autowired
     private EmailService emailService;
+
     @Test
-    void testSendEmail(){
+    void testSendEmail() {
 //        emailService.sendSimpleMessage("yangchenghu@58.com","测试发送","111111");
+    }
+
+    @Autowired
+    private TenderingProcessor tenderingProcessor;
+
+    @Test
+    void spiderTendering() {
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p5",1,1000);
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p7",1,1000);
+    }
+
+    @Test
+    void testBid() {
+        Bid bid = new Bid();
+        bid.setContent("我要竞标");
+        bid.setTime(new Date());
+        bid.setSrc("http://file.erya.ychstudy.cn/group1/M00/00/06/rBAABV6y0dOAe2iGAACI4eIIV_E82.docx");
+        for (int i = 0; i < 200; i++) {
+            int e_id = (int) (Math.random() * 10) + 1;
+            Enterprise info = enterpriseService.getInfo(e_id);
+            int t_id = (int) (Math.random() * 100) + 1;
+            Tendering tenderingInfo = tenderingService.getTenderingInfo(t_id);
+            bid.setE_id(e_id);
+            bid.setE_name(info.getName());
+            bid.setT_title(tenderingInfo.getTitle());
+            bid.setT_e_id(tenderingInfo.getE_id());
+            bid.setT_id(tenderingInfo.getId());
+//            bidService.insert(bid);
+        }
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p5",1,1000);
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p7",1,1000);
+    }
+
+    private char getRandomChar() {
+        String str = "";
+        int hightPos; //
+        int lowPos;
+
+        Random random = new Random();
+
+        hightPos = (176 + Math.abs(random.nextInt(39)));
+        lowPos = (161 + Math.abs(random.nextInt(93)));
+
+        byte[] b = new byte[2];
+        b[0] = (Integer.valueOf(hightPos)).byteValue();
+        b[1] = (Integer.valueOf(lowPos)).byteValue();
+
+        try {
+            str = new String(b, "GBK");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            System.out.println("错误");
+        }
+
+        return str.charAt(0);
     }
 }
