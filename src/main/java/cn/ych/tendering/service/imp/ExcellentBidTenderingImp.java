@@ -45,6 +45,7 @@ public class ExcellentBidTenderingImp implements ExcellentTenderingService {
 //        if (Double.compare(excellentTendering.getFail_rate(), 0) == 0) {
 //            wrapper.eq("fail_rate", excellentTendering.getFail_rate());
 //        }
+        wrapper.orderByDesc("id");
         return excellentTenderingMapper.selectPage(page, wrapper);
     }
 }

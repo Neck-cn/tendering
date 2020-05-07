@@ -147,6 +147,7 @@ public class EnterpriseServiceImp implements EnterpriseService {
         if (StringUtils.isNotEmpty(enterprise.getE_mail())) {
             wrapper.like("e_mail", "%" + enterprise.getE_mail() + "%");
         }
+        wrapper.orderByDesc("id");
         return enterpriseMapper.selectPage(page, wrapper);
     }
 

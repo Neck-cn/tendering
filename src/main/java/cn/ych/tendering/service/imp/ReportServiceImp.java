@@ -55,6 +55,7 @@ public class ReportServiceImp implements ReportService {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             wrapper.eq("time", sdf.format(report.getTime()));
         }
+        wrapper.orderByDesc("id");
         return reportMapper.selectPage(page, wrapper);
     }
 }

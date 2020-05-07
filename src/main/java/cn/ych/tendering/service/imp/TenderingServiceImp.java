@@ -69,6 +69,7 @@ public class TenderingServiceImp implements TenderingService {
         if (tendering.getWin_id() != 0) {
             wrapper.eq("win_id", tendering.getWin_id());
         }
+        wrapper.orderByDesc("id");
         return tenderingMapper.selectPage(page, wrapper);
     }
 

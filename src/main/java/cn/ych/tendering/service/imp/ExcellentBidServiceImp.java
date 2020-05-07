@@ -30,6 +30,7 @@ public class ExcellentBidServiceImp implements ExcellentBidService {
         if (StringUtils.isNotEmpty(excellentBid.getName())) {
             wrapper.like("name", "%" + excellentBid.getName() + "%");
         }
+        wrapper.orderByDesc("id");
         return excellentBidMapper.selectPage(page, wrapper);
     }
 }

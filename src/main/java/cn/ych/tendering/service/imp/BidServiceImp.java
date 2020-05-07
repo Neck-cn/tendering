@@ -61,6 +61,7 @@ public class BidServiceImp implements BidService {
         if (bid.getT_id() != 0) {
             wrapper.eq("t_id", bid.getT_id());
         }
+        wrapper.orderByDesc("id");
         return bidMapper.selectPage(page, wrapper);
     }
 
