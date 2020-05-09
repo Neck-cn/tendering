@@ -181,8 +181,9 @@ class TenderingApplicationTests {
 
     @Test
     void spiderTendering() {
-//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p5",1,1000);
-//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p7",1,1000);
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p2",1,1000);
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p3",1,1000);
+//        tenderingProcessor.start("http://www.qianlima.com/zbgg/p4",1,1000);
     }
 
     @Test
@@ -194,7 +195,7 @@ class TenderingApplicationTests {
         for (int i = 0; i < 200; i++) {
             int e_id = (int) (Math.random() * 10) + 1;
             Enterprise info = enterpriseService.getInfo(e_id);
-            int t_id = (int) (Math.random() * 100) + 1;
+            int t_id = (int) (Math.random() * 100) + 200;
             Tendering tenderingInfo = tenderingService.getTenderingInfo(t_id);
             bid.setE_id(e_id);
             bid.setE_name(info.getName());
