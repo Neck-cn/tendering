@@ -36,7 +36,7 @@ public class Tendering {
     private String src;
     @ApiModelProperty(value = "招标企业名")
     private String name;
-    @ApiModelProperty(value = "中标企业名")
+    @ApiModelProperty(value = "中标原因")
     private String reason;
     @ApiModelProperty(value = "方式")
     @TableField(exist = false)
