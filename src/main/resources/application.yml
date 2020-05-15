@@ -19,8 +19,8 @@ spring:
     username: root
     password: YCH670989882@qq.com
     hikari:
-      maximum-pool-size: 12
-      minimum-idle: 6
+      maximum-pool-size: 2
+      minimum-idle: 1
   redis:
     database: 1
     password: YCH670989882@qq.com
@@ -41,7 +41,7 @@ spring:
   mail:
     host: smtp.qq.com # 发件服务器
     username: 670989882@qq.com # 账号
-    password: axalxxkbnwhqbeig # 密码（163需要授权第三方登录密码，请查看设置-客户端授权码密码开通）
+    password: asshmpnvzixkbdif    # 密码（163需要授权第三方登录密码，请查看设置-客户端授权码密码开通）
     port: 465
     protocol: smtp
     default-encoding: utf-8
