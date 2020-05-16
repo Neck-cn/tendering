@@ -1,11 +1,11 @@
 package cn.ych.tendering.controller;
 
+import cn.ych.tendering.exception.TenderingEnum;
 import cn.ych.tendering.pojo.Enterprise;
 import cn.ych.tendering.service.EnterpriseService;
 import cn.ych.tendering.vo.Result;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import static cn.ych.tendering.exception.TenderingEnum.CODE_INVALID;
+import static cn.ych.tendering.exception.TenderingEnum.SMS_FAILED;
 
 @RestController
 public class EnterpriseController {
@@ -33,7 +36,7 @@ public class EnterpriseController {
         if (enterprise.getCode().equals(s)) {
             return ResponseEntity.status(HttpStatus.OK).body(new Result(enterpriseService.register(enterprise)));
         }
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new Result("验证码错误"));
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new Result(CODE_INVALID));
     }
 
     @ApiOperation(value = "企业登录")
@@ -60,9 +63,9 @@ public class EnterpriseController {
         String res = enterpriseService.sendMsg(phone.get(0));
         if (res != null) {
             stringRedisTemplate.opsForValue().set(phone.get(0), res, 300000, TimeUnit.MILLISECONDS);
-            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(new Result("短信发送成功。"));
+            return ResponseEntity.status(HttpStatus.OK).body(new Result("短信发送成功。"));
         }
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(new Result("短信发送失败。"));
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(new Result(SMS_FAILED));
     }
 
     @ApiOperation(value = "获取企业信息")

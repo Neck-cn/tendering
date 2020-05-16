@@ -5,6 +5,8 @@ public enum TenderingEnum {
     TOKEN_INVALID(401, "token无效"),
     PERMISSION_REFUSED(403, "权限不足"),
     USER_IS_EXISTED(422, "用户已存在"),
+    CODE_INVALID(422, "用户已存在"),
+    SMS_FAILED(422, "短信发送失败"),
     ;
     private final int code;
     private final String errMsg;
